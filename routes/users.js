@@ -6,7 +6,11 @@ var User = require("../models/user");
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+  if(req.user) {
+      res.json(req.user);
+  } else {
+      res.json({message: 'not logged in'});
+  }
 });
 
 router.get('/register', function(req, res, next) {
